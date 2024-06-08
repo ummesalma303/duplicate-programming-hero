@@ -6,7 +6,7 @@ function loadMilestone() {
         return ` <div class="milestone border-b">
               <div class="flex">
                 <div class="checkbox"><input type="checkbox" /></div>
-                <div onclick = "openMilestone(this)">
+                <div onclick = "openMilestone(this,${milestones._id})">
                   <p>
                     ${milestones.name}
                     <span><i class="fas fa-chevron-down"></i></span>
@@ -25,7 +25,7 @@ function loadMilestone() {
 }
 
 
-function openMilestone(milestoneElement) {
+function openMilestone(milestoneElement,id) {
    const currentPanel = milestoneElement.parentNode.nextElementSibling;
    const showPannel = document.querySelector('.show');
    const active = document.querySelector(".active");
@@ -38,12 +38,19 @@ function openMilestone(milestoneElement) {
     showPannel.classList.remove('show');
    }
 
-    
+    showImage(id);
 
     currentPanel.classList.toggle("show");
 }
 
-
+function showImage(id) {
+  const milestoneImage = document.querySelector('.milestoneImage')
+  const title = document.querySelector('.title')
+  const details = document.querySelector('.details')
+  milestoneImage.src = milestoneData[id].image;
+  title.innerText = milestoneData[id].name;
+  details.innerText = milestoneData[id].description;
+}
 loadMilestone();
 
 
